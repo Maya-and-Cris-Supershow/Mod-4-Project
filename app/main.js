@@ -2,13 +2,13 @@ import "./style.css";
 import { fetchData } from "./utils.js";
 
 const getAllCharacters = async () => {
-  const { data } = await fetchData("http://ponyapi.net/v1/character/all");
+  const { data } = await fetchData("https://ponyapi.net/v1/character/all");
   return data;
 };
 
 const getCharacterById = async (id) => {
   return await fetchData(
-    `http://ponyapi.net/v1/character/${id}`
+    `https://ponyapi.net/v1/character/${id}`
   );
 };
 
