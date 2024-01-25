@@ -1,4 +1,5 @@
-import { makePonyNode, renderScrollPonies } from "./render.js";
+import { getPonies, makeDefaultPonies } from "./local.js";
+import { makePonyNode, renderFavoritePonies, renderScrollPonies } from "./render.js";
 import "./style.css";
 import { fetchData } from "./utils.js";
 
@@ -7,11 +8,11 @@ const getAllCharacters = async () => {
   return data;
 };
 
-const getCharacterById = async (id) => {
+export const getCharacterById = async (id) => {
   return await fetchData(`https://ponyapi.net/v1/character/${id}`);
 };
 
-const getCharacterByName = async (name) => {
+export const getCharacterByName = async (name) => {
   return await fetchData(
     `https://ponyapi.net/v1/character/${name.replace(/\s/g, "_")}`
   );
@@ -23,7 +24,7 @@ const main = async () => {
     const newIndex = Number(displayedCharacters[0].index) === 0 ? allCharacters.length - 1 : Number(displayedCharacters[0].index) - 1;
     const ponyUp = allCharacters[newIndex];
     displayedCharacters.unshift({
-      pony: makePonyNode(ponyUp.image[0]),
+      pony: makePonyNode(ponyUp.image[0],ponyUp.name.replace(/\s/g,'_'),ponyUp.id),
       index: newIndex,
     });
     displayedCharacters.pop();
@@ -37,7 +38,7 @@ const main = async () => {
     const ponyUp = allCharacters[newIndex];
     displayedCharacters.push({
       index: newIndex,
-      pony:makePonyNode(ponyUp.image[0]),
+      pony:makePonyNode(ponyUp.image[0],ponyUp.name.replace(/\s/g,'_'),ponyUp.id),
     })
     displayedCharacters.shift();
   }
@@ -53,12 +54,12 @@ const main = async () => {
   };
 
   const allCharacters = await getAllCharacters();
-  console.log(allCharacters);
+  console.log(allCharacters[0]);
   const displayedCharacters = [];
   for (let i = 0; i < 5; i++) {
     displayedCharacters[i] = {
       index: i,
-      pony: makePonyNode(allCharacters[i].image[0]),
+      pony: makePonyNode(allCharacters[i].image[0],allCharacters[i].name.replace(/\s/g,'_'),allCharacters[i].id),
     };
   }
   document.querySelectorAll(".direction-scroll").forEach((button) => {
@@ -81,6 +82,15 @@ const main = async () => {
     };
   })
 
+  document.querySelector('#modal-wrapper').addEventListener('click',(e) => {
+    if (e.target.tagName !== "SECTION") return;
+    e.target.style.display = "none";
+  })
+
   renderScrollPonies(displayedCharacters);
+  if (!(getPonies())) makeDefaultPonies();
+  const savedPonies = getPonies();
+  renderFavoritePonies(savedPonies);
 };
+
 main();
