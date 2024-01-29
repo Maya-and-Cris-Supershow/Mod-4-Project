@@ -57,7 +57,11 @@ const makeModal = (ponyData,img) => {
     h2.textContent = name.replace(/_/g,' ');
 
     const aliasDiv = document.createElement('div');
-    aliasDiv.textContent = alias;
+    const aliasP = document.createElement('p');
+    const aliash3 = document.createElement('h3');
+    aliash3.textContent = "Alias:"
+    aliasP.textContent = alias;
+    aliasDiv.append(aliash3, aliasP);
 
     const kindDiv = document.createElement('div');
     const kindh3 = document.createElement('h3');
