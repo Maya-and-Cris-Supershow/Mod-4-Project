@@ -4,7 +4,7 @@ import "./style.css";
 import { fetchData } from "./utils.js";
 
 const getAllCharacters = async () => {
-  const { data } = await fetchData("https://ponyapi.net/v1/character/all");
+  const { data } = await fetchData("https://ponyapi.net/v1/character/all? limit=563");
   return data;
 };
 
