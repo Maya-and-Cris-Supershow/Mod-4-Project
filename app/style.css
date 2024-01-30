@@ -5,6 +5,8 @@
 
 body {
   min-height: 100vh;
+  background-image: url(background.png);
+  background-size: cover;
 }
 
 header {
@@ -17,6 +19,10 @@ header {
   align-items: center;
 }
 
+#scroller button {
+  background-color: white;
+}
+
 #scroller-wrapper {
   display: flex;
   flex-direction: row;
@@ -26,14 +32,16 @@ header {
   margin-bottom: 2rem;
   justify-content: space-between;
   border: 2px solid black;
-  width: 28rem;
+  width: fit-content;
+  background-color: white;
+  gap:2rem;
 }
 
 .scroll-pony {
   max-height: 5rem;
   max-width: 9rem;
   cursor: pointer;
-  
+  border: 1.5px solid black;
 }
 
 .direction-scroll {
@@ -51,7 +59,9 @@ header {
   justify-content: center;
   height: 100%;
   grid-template-rows: auto;
+  border: 2px solid black;
 }
+
 #favorite-ponies {
   display: flex;
   justify-content: space-between;
@@ -60,10 +70,23 @@ header {
   margin-left: 5%;
   margin-right: 5%;
   height: 10rem;
+  background-color: white;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+h1 {
+  /* padding-block: 5px; */
+  background-color: white;
+  width: fit-content;
 }
 
 h2 {
-  padding-bottom: 1rem;
+  padding-block: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #modal-wrapper {
@@ -75,18 +98,17 @@ h2 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: auto;
-
 }
 
 ul {
-  padding-left:1rem;
+  padding-left: 1rem;
 }
 
 #modal-content {
   background-color: white;
   margin: 7% auto;
   width: 50%;
-  padding:2rem;
+  padding: 2rem;
   border: 0.3rem solid black;
   overflow-y: auto;
   border-radius: 2rem;
@@ -101,15 +123,15 @@ ul {
 
 #modal-content img {
   max-width: 9rem;
-  border:0.3rem solid black;
+  border: 0.3rem solid black;
 }
 
 .modal-image-wrapper {
   display: grid;
-  grid-template-columns: repeat(4,auto);
-  grid-template-rows: repeat(4,auto);
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(4, auto);
   padding-top: 1rem;
-  gap:0.5rem;
+  gap: 0.5rem;
 }
 
 .modal-image {

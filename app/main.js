@@ -22,6 +22,7 @@ const main = async () => {
   const scrollLeft = (amount = 1) => {
     for (let i =0; i < amount; i++) {
     const newIndex = Number(displayedCharacters[0].index) === 0 ? allCharacters.length - 1 : Number(displayedCharacters[0].index) - 1;
+    console.log(newIndex)
     const ponyUp = allCharacters[newIndex];
     displayedCharacters.unshift({
       pony: makePonyNode(ponyUp.image[0],ponyUp.name.replace(/\s/g,'_'),ponyUp.id),
